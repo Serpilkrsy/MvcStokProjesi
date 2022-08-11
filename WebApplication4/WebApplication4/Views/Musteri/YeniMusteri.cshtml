@@ -1,0 +1,28 @@
+﻿@model WebApplication4.Models.Entity.TBLMUSTERILER
+@{
+    ViewBag.Title = "YeniMusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Musteri Adı</label>
+        @Html.TextBoxFor(m => m.MUSTERIAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MUSTERIAD, "", new { @style = "color:green" })
+        
+    </div>
+    <div>
+        <label>Musteri Soyadı</label>
+        <input type="text" class="form-control" name="MUSTERISOYAD" />
+
+    </div>
+    <div>
+        <button class="btn btn-info" id="btn1">Musteri Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Musteri Ekleme islemi tamamlandıı..');
+        });
+    </script>
+</form>
+

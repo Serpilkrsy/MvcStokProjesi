@@ -1,0 +1,49 @@
+﻿@using WebApplication4.Models.Entity;
+@using PagedList
+@using PagedList.Mvc
+@model List<TBLMUSTERILER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Index", "Musteri", FormMethod.Get))
+{
+    <p>
+        <b>Aranacak musteri adi:</b>@Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </p>
+}
+<table class="table table-bordered">
+    <tr>
+        <th>MUSTERI ID</th>
+        <th>MUSTERI ADI</th>
+        <th>MUSTERI SOYADI</th>
+        <th>SIL</th>
+        <th>GUNCELLE</th>
+        <th>ALERT</th>
+
+    </tr>
+    <tbody>
+        @foreach (var mus in Model)
+        {
+            <tr>
+                <th>@mus.MUSTERIID</th>
+                <td>@mus.MUSTERIAD</td>
+                <td>@mus.MUSTERISOYAD</td>
+                <td><a href="/MUSTERI/SIL/@mus.MUSTERIID" class="btn btn-danger ">SIL</a></td>
+                <td><a href="/MUSTERI/MusteriGetir/@mus.MUSTERIID" class="btn btn-success ">GUNCELLE</a></td>
+                <td>@Html.ActionLink("SİL BUTONU", "SIL", new { id = mus.MUSTERIID }, new { @class = "btn btn-warning", onclick = "return confirm('silmek istediğinize emin miisniz')" })</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<a href="/MUSTERI/YeniMusteri" class=" btn btn-primary "> YENI MUSTERI EKLE</a>
+
